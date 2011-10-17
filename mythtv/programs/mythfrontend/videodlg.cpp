@@ -1213,6 +1213,7 @@ void VideoDialog::UpdateItem(MythUIButtonListItem *item)
         MetadataMap metadataMap;
         metadata->toMap(metadataMap);
         item->SetTextFromMap(metadataMap);
+        item->SetFlagged(!metadata->GetWatched());
     }
 
     MythUIButtonListItemCopyDest dest(item);
@@ -2047,6 +2048,20 @@ bool VideoDialog::keyPressEvent(QKeyEvent *levent)
                 handled = goBack();
             else
                 handled = false;
+        }
+        else if (action == "TOGGLEWATCHED")
+        {
+	    MythUIButtonListItem *item = GetItemCurrent();
+	    VideoMetadata *metadata = GetMetadata(item);
+	    if (metadata)
+	    {
+		metadata->SetWatched(!metadata->GetWatched());
+		metadata->UpdateDatabase();
+                // Instead of forcing a full refresh, just update the in-memory flags
+                MythGenericTree *node = GetNodePtrFromButton(item);
+                node->SetFlagged(!metadata->GetWatched());
+                item->SetFlagged(node->IsFlagged());
+	    }
         }
         else
             handled = false;

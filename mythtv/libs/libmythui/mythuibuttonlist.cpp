@@ -2854,6 +2854,7 @@ MythUIButtonListItem::MythUIButtonListItem(MythUIButtonList *lbtype,
     m_state     = state;
     m_showArrow = showArrow;
     m_data      = 0;
+    m_flagged   = false;
 
     if (state >= NotChecked)
         m_checkable = true;
@@ -2878,6 +2879,7 @@ MythUIButtonListItem::MythUIButtonListItem(MythUIButtonList *lbtype,
     m_checkable = false;
     m_state     = CantCheck;
     m_showArrow = false;
+    m_flagged   = false;
 
     if (m_parent)
         m_parent->InsertItem(this, listPosition);
@@ -2912,6 +2914,16 @@ void MythUIButtonListItem::SetText(const QString &text, const QString &name,
     }
     else
         m_text = text;
+
+    if (m_parent)
+        m_parent->Update();
+}
+
+void MythUIButtonListItem::SetFlagged(const bool flagged)
+{
+    if (flagged == m_flagged)
+        return;
+    m_flagged = flagged;
 
     if (m_parent)
         m_parent->Update();
@@ -3215,21 +3227,43 @@ void MythUIButtonListItem::SetToRealButton(MythUIStateType *button, bool selecte
     if (!m_parent)
         return;
 
+    bool stateSet = false;
     QString state;
 
-    if (selected)
+    if (m_flagged)
     {
-        button->MoveToTop();
-        state = m_parent->m_active ? "selectedactive" : "selectedinactive";
-    }
-    else
-        state = m_parent->m_active ? "active" : "inactive";
+	if (selected)
+	{
+	    button->MoveToTop();
+	    state = m_parent->m_active ? "selectedactiveflagged" : "selectedinactiveflagged";
+	}
+	else
+	    state = m_parent->m_active ? "activeflagged" : "inactiveflagged";
 
-    if (!button->DisplayState(state) && state == "inactive")
-    {
-        state = "active";
-        button->DisplayState(state);
+        stateSet = button->DisplayState(state);
+	if (!stateSet && state == "inactiveflagged")
+	{
+	    state = "activeflagged";
+	    stateSet = button->DisplayState(state);
+	}
     }
+    if (!stateSet)
+    {
+	if (selected)
+	{
+	    button->MoveToTop();
+	    state = m_parent->m_active ? "selectedactive" : "selectedinactive";
+	}
+	else
+	    state = m_parent->m_active ? "active" : "inactive";
+
+	if (!button->DisplayState(state) && state == "inactive")
+	{
+	    state = "active";
+	    button->DisplayState(state);
+	}
+    }
+
 
     MythUIGroup *buttonstate = dynamic_cast<MythUIGroup *>
                                (button->GetCurrentState());

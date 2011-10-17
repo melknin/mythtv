@@ -122,6 +122,7 @@ MythGenericTree::MythGenericTree(const QString &a_string, int an_int,
     m_selectable = selectable_flag;
     m_visible = true;
     m_visibleCount = 0;
+    m_flagged = false;
 }
 
 MythGenericTree::~MythGenericTree()
@@ -732,6 +733,7 @@ MythUIButtonListItem *MythGenericTree::CreateListButton(MythUIButtonList *list)
 {
     MythUIButtonListItem *item = new MythUIButtonListItem(list, getString());
     item->SetData(qVariantFromValue(this));
+    item->SetFlagged(m_flagged);
     item->SetTextFromMap(m_strings);
     item->SetImageFromMap(m_imageFilenames);
 

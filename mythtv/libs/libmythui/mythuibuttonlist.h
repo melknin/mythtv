@@ -84,6 +84,9 @@ class MUI_PUBLIC MythUIButtonListItem
 
     virtual void SetToRealButton(MythUIStateType *button, bool selected);
 
+    void SetFlagged(const bool flagged);
+    bool IsFlagged() const { return m_flagged; }
+
   protected:
     MythUIButtonList *m_parent;
     QString         m_text;
@@ -94,6 +97,7 @@ class MUI_PUBLIC MythUIButtonListItem
     CheckState      m_state;
     QVariant        m_data;
     bool            m_showArrow;
+    bool            m_flagged;
 
     QMap<QString, TextProperties> m_strings;
     QMap<QString, MythImage*> m_images;

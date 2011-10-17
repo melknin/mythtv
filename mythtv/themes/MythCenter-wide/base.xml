@@ -9,6 +9,14 @@
         <weight>bold</weight>
     </fontdef>
 
+    <fontdef name="basesmallyellow" from="basesmall">
+        <color>#FFFF33</color>
+    </fontdef>
+
+    <fontdef name="basesmallyellow_inactive" from="basesmall">
+        <color>#666611</color>
+    </fontdef>
+
     <fontdef name="basesmaller" from="basesmall">
         <pixelsize>18</pixelsize>
     </fontdef>
@@ -228,6 +236,28 @@
                 </shape>
                 <textarea name="buttontext">
                     <font>basesmall_normal_inactive</font>
+                </textarea>
+            </state>
+            <state name="activeflagged" from="active">
+                <textarea name="buttontext">
+                    <font>basesmallyellow</font>
+                </textarea>
+            </state>
+            <state name="selectedactiveflagged" from="activeflagged">
+                <shape name="background">
+                    <fill style="gradient">
+                        <gradient start="#52CA38" end="#349838" alpha="255" />
+                    </fill>
+                </shape>
+            </state>
+            <state name="selectedinactiveflagged" from="activeflagged">
+                <shape name="background">
+                    <fill style="gradient">
+                        <gradient start="#52CA38" end="#349838" alpha="100" />
+                    </fill>
+                </shape>
+                <textarea name="buttontext">
+                    <font>basesmallyellow_inactive</font>
                 </textarea>
             </state>
         </statetype>

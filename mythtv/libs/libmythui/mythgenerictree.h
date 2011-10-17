@@ -93,6 +93,9 @@ class MUI_PUBLIC MythGenericTree
     void SetVisible(bool visible);
     bool IsVisible() const { return m_visible; }
 
+    void SetFlagged(bool flagged) { m_flagged = flagged; }
+    bool IsFlagged() const { return m_flagged; }
+
     void IncVisibleCount() { m_visibleCount++; }
     void DecVisibleCount() { m_visibleCount--; }
 
@@ -144,6 +147,7 @@ class MUI_PUBLIC MythGenericTree
 
     bool m_selectable;
     bool m_visible;
+    bool m_flagged;
     int m_currentOrderingIndex;
 };
 

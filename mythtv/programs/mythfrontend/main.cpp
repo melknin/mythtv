@@ -1340,6 +1340,8 @@ static void InitKeys(void)
          "Go to the first video"), "Home");
      REG_KEY("Video","END", QT_TRANSLATE_NOOP("MythControls",
          "Go to the last video"), "End");
+     REG_KEY("Video","TOGGLEWATCHED", QT_TRANSLATE_NOOP("MythControls",
+         "Toggle watched flag"), "Ctrl+W");
 }
 
 static void ReloadKeys(void)

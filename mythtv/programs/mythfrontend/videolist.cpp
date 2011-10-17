@@ -301,6 +301,7 @@ static MythGenericTree *AddDirNode(MythGenericTree *where_to_add,
     sub_node->setOrderingIndex(kNodeSort);
     sub_node->SetData(QVariant::fromValue(TreeNodeData(fqPath, host, prefix)));
     sub_node->SetText(name, "title");
+    sub_node->SetFlagged(false);
 
     // ...and the updir node.
     if (add_up_dirs)
@@ -310,6 +311,7 @@ static MythGenericTree *AddDirNode(MythGenericTree *where_to_add,
                                   true, false);
         up_node->setAttribute(kNodeSort, kOrderUp);
         up_node->setOrderingIndex(kNodeSort);
+        up_node->SetFlagged(false);
     }
 
     return sub_node;
@@ -322,6 +324,7 @@ static int AddFileNode(MythGenericTree *where_to_add, QString name,
     sub_node->setAttribute(kNodeSort, kOrderItem);
     sub_node->setOrderingIndex(kNodeSort);
     sub_node->SetData(QVariant::fromValue(TreeNodeData(metadata)));
+    sub_node->SetFlagged(!metadata->GetWatched());
     QHash<QString, QString> textMap;
     metadata->toMap(textMap);
     sub_node->SetTextFromMap(textMap);
