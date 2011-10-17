@@ -715,7 +715,7 @@
         </textarea>
 
         <buttontree name="videos">
-            <area>40,50,1200,310</area>
+            <area>40,50,1200,560</area>
             <numlists>3</numlists>
             <spacing>10</spacing>
             <buttonlist name="listtemplate" from="basebuttonlist">
@@ -725,88 +725,15 @@
         </buttontree>
 
         <textarea name="title" from="basetextarea">
-            <area>40,380,1200,40</area>
+            <area>40,650,1020,40</area>
             <font>baselarge</font>
         </textarea>
-<!--
-         <textarea name="s##e##" from="basetextarea">
-             <area>50,380,400,30</area>
-             <font>basemedium</font>
-         </textarea>
--->
-         <textarea name="subtitle" from="basetextarea">
-             <area>50,420,800,30</area>
-             <font>basemedium</font>
-         </textarea>
 
-          <textarea name="director" from="basetextarea">
-             <area>50,467,450,30</area>
-          </textarea>
-  
-          <textarea name="year" from="basetextarea">
-             <area>500,467,80,30</area>
-              <align>right</align>
-          </textarea>
-  
-          <textarea name="description" from="basetextarea">
-             <area>40,500,800,150</area>
-              <align>left,top</align>
-              <multiline>yes</multiline>
-              <cutdown>yes</cutdown>
-          </textarea>
-<!--  
-          <textarea name="cast" from="basetextarea">
-             <area>720,495,480,140</area>
-              <align>left,top</align>
-              <multiline>yes</multiline>
-              <cutdown>no</cutdown>
-          </textarea>
--->  
-          <textarea name="position" from="basetextarea">
-             <area>266,655,266,40</area>
-              <font>basemedium</font>
-              <align>hcenter,vcenter</align>
-          </textarea>
-
-        <imagetype name="coverart">
-            <area>1000,400,225,250</area>
-            <preserveaspect>yes</preserveaspect>
-        </imagetype>
-
-        <textarea name="level_label" from="basetextarea">
-            <area>960,670,210,30</area>
-            <value>Parental Level</value>
-            <align>right,vcenter</align>
+        <textarea name="position" from="basetextarea">
+            <area>1100,650,140,40</area>
+            <font>basemedium</font>
+            <align>right</align>
         </textarea>
-
-        <statetype name="parentallevel">
-            <position>1180,666</position>
-            <state name="None">
-                <imagetype name="icon">
-                    <filename>mv_level_none.png</filename>
-                </imagetype>
-            </state>
-            <state name="Lowest">
-                <imagetype name="icon">
-                    <filename>mv_level_lowest.png</filename>
-                </imagetype>
-            </state>
-            <state name="Low">
-                <imagetype name="icon">
-                    <filename>mv_level_low.png</filename>
-                </imagetype>
-            </state>
-            <state name="Medium">
-                <imagetype name="icon">
-                    <filename>mv_level_medium.png</filename>
-                </imagetype>
-            </state>
-            <state name="High">
-                <imagetype name="icon">
-                    <filename>mv_level_high.png</filename>
-                </imagetype>
-            </state>
-        </statetype>
     </window>
 
     <window name="file_associations">
